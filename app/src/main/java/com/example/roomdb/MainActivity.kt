@@ -16,6 +16,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 class MainActivity : AppCompatActivity() ,WordAdapter.ClickListener{
     private lateinit var wordViewModel: WordViewmodel
     private lateinit var wordAdapter: WordAdapter
+    private lateinit var word_one: String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -40,6 +41,10 @@ class MainActivity : AppCompatActivity() ,WordAdapter.ClickListener{
         btn_delete.setOnClickListener {
             var delete_word =edt_word.text.toString()
             wordViewModel.deleteWord(delete_word)
+        }
+        btn_update.setOnClickListener{
+            var update_word = edt_word.text.toString()
+            wordViewModel.updateWord(word_one,update_word)
         }
         wordAdapter.setOnClickListener(this)
     }
@@ -70,5 +75,6 @@ class MainActivity : AppCompatActivity() ,WordAdapter.ClickListener{
 
     override fun onClick(word: Word) {
         edt_word.setText(word.word.toString())
+        word_one = word.word.toString()
     }
 }

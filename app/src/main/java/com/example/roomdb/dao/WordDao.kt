@@ -20,4 +20,7 @@ interface WordDao {
 
     @Query("DELETE FROM word_table where word_id = :word_id")
     suspend fun delete(word_id: String)
+
+    @Query("UPDATE word_table SET word_id = :update_word WHERE word_id = :word_id")
+    suspend fun update(word_id: String,update_word:String)
 }
